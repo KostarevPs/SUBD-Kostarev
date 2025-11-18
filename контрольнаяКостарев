@@ -3,6 +3,8 @@ CREATE TABLE articles (
     title VARCHAR(200),
     status ENUM('draft', 'published', 'archived')
 )
+
+
 INSERT INTO articles (id, title, status)
 WITH RECURSIVE numbers (n) AS (
     SELECT 0
@@ -18,7 +20,12 @@ SELECT
         ELSE 'archived'
     END as status
 FROM numbers
+
+
 CREATE INDEX idx_status ON articles(status)
+
+
 EXPLAIN SELECT * FROM articles 
 WHERE status = 'published' 
 ORDER BY id
+
