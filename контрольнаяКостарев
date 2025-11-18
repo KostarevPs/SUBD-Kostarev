@@ -1,3 +1,5 @@
+Это я тот самый который пароль забыл. Я новый гитхаб создал.
+
 CREATE TABLE articles (
     id INT PRIMARY KEY,
     title VARCHAR(200),
@@ -28,4 +30,5 @@ CREATE INDEX idx_status ON articles(status)
 EXPLAIN SELECT * FROM articles 
 WHERE status = 'published' 
 ORDER BY id
+
 
