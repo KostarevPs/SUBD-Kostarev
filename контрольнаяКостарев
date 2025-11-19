@@ -1,0 +1,34 @@
+Это я тот самый который пароль забыл. Я новый гитхаб создал.
+
+CREATE TABLE articles (
+    id INT PRIMARY KEY,
+    title VARCHAR(200),
+    status ENUM('draft', 'published', 'archived')
+)
+
+
+INSERT INTO articles (id, title, status)
+WITH RECURSIVE numbers (n) AS (
+    SELECT 0
+    UNION ALL
+    SELECT n + 1 FROM numbers WHERE n < 79999
+)
+SELECT 
+    n + 1 as id,
+    CONCAT('Article Title ', n + 1) as title,
+    CASE 
+        WHEN n % 3 = 0 THEN 'draft'
+        WHEN n % 3 = 1 THEN 'published' 
+        ELSE 'archived'
+    END as status
+FROM numbers
+
+
+CREATE INDEX idx_status ON articles(status)
+
+
+EXPLAIN SELECT * FROM articles 
+WHERE status = 'published' 
+ORDER BY id
+
+
