@@ -1,4 +1,4 @@
-//создание таблицы marks и добавление внешних ключей.
+//создание таблицы marks и добавление внешних связей.
 
 CREATE TABLE marks (
     mark_id INT PRIMARY KEY AUTO_INCREMENT,
