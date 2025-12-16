@@ -1,0 +1,28 @@
+//создание таблицы marks и добавление внешних связей.
+
+CREATE TABLE marks (
+    mark_id INT PRIMARY KEY AUTO_INCREMENT,
+    stud_id INT NOT NULL,
+    subj_id INT NOT NULL,
+    mark INT NOT NULL CHECK (mark BETWEEN 1 AND 5),
+    CONSTRAINT fk_student FOREIGN KEY (stud_id) REFERENCES students(student_id),
+    CONSTRAINT fk_subject FOREIGN KEY (subj_id) REFERENCES subjects(subject_id)
+);
+
+//наполнение marks данными
+INSERT INTO marks (stud_id, subj_id, mark) VALUES
+(1, (SELECT subject_id FROM subjects WHERE subject_name = 'Математика'), 5),
+(1, (SELECT subject_id FROM subjects WHERE subject_name = 'История'), 4),
+(1, (SELECT subject_id FROM subjects WHERE subject_name = 'Философия'), 5),
+
+(2, (SELECT subject_id FROM subjects WHERE subject_name = 'Математика'), 3),
+(2, (SELECT subject_id FROM subjects WHERE subject_name = 'История'), 5),
+(2, (SELECT subject_id FROM subjects WHERE subject_name = 'Философия'), 4),
+
+(3, (SELECT subject_id FROM subjects WHERE subject_name = 'Математика'), 4),
+(3, (SELECT subject_id FROM subjects WHERE subject_name = 'История'), 3),
+(3, (SELECT subject_id FROM subjects WHERE subject_name = 'Философия'), 5);
+
+//добавление 10 студента (было 9)
+INSERT INTO marks (stud_id, subj_id, mark) 
+VALUES (4, 1, 4);
